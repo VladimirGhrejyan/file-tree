@@ -1,11 +1,9 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import Layout from './components/Layout/Layout';
 
-function App() {
+const App = () => {
   return (
-    <div>
-      
-    </div>
+    <Layout />
   );
 }
 
