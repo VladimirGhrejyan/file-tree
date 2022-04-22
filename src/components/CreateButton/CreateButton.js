@@ -1,7 +1,7 @@
 import React, { Fragment, useState } from 'react'
 import Modal from '../Modal/Modal'
 
-const CreateButton = ({folders}) => {
+const CreateButton = ( {folder} ) => {
 
     const [isOpen, setIsOpen] = useState(false)
 
@@ -16,7 +16,7 @@ const CreateButton = ({folders}) => {
     return (
         <div>
             <button onClick={handleOpenModal} >Create new folder</button>
-            <Modal isOpen={isOpen} onClose={handleCloseModal} folders={folders} />
+            <Modal isOpen={isOpen} onClose={handleCloseModal} folder={folder} />
         </div>
     )
 }

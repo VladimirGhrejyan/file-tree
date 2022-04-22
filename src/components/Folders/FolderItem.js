@@ -1,8 +1,10 @@
 import React from 'react'
 
-const FolderItem = ( {folder} ) => {
+const FolderItem = ( {folder, onOpen} ) => {
     return (
-        <button>{folder.title}</button>
+        <button onClick={() => onOpen(folder)}>
+            {folder.title}
+        </button>
     )
 }
 

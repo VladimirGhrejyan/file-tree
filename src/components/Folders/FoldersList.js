@@ -1,12 +1,22 @@
 import React from 'react'
-import classes from 'FoldersList.module.css'
 import FolderItem from './FolderItem'
+import CreateButton from '../CreateButton/CreateButton'
+import classes from 'FoldersList.module.css'
 
-const FoldersList = ({folders}) => {
+const FoldersList = ( {folder, onOpen} ) => {
     return (
-        <ul className={classes.list}>
-            {folders.map( item => <li key={item.id}><FolderItem folder={item} /></li> )}
-        </ul>
+        <div className={classes.container}>
+            <CreateButton folder={folder} />
+            <div className={classes.list}>
+                <ul>
+                    {folder.subfolders.map( item => (
+                        <li key={item.id}>
+                            <FolderItem folder={item} onOpen={onOpen} />
+                        </li> 
+                    ))}
+                </ul>
+            </div>
+        </div>
     )
 }
 

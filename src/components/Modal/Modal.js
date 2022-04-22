@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
+import useFolders from '../../hooks/useFolders.hook'
 import classes from './Modal.module.css'
-import {v4 as uuidv4} from 'uuid'
 
-const Modal = ({isOpen, onClose, folders, id}) => {
+const Modal = ({isOpen, onClose, folder}) => {
     
     const [name, setName] = useState('')
 
@@ -10,33 +10,7 @@ const Modal = ({isOpen, onClose, folders, id}) => {
         setName(e.target.value)
     }
 
-    const handleCreateFolder = () => {
-        const folder = {
-            subfolders: [],
-            id: uuidv4(),
-            title: name
-        }
-
-        const addSubfolder = (obj, id) => {
-            if (obj.id !== id && obj.subfolders.length) {
-                for (let i = 0; i < obj.subfolders.length; i++) {
-                    return addSubfolder(obj.subfolders[i], id)
-                }
-            } else if (obj.id !== id) {
-                return
-            }
-        
-            obj.subfolders.push(folder)
-        }
-
-        
-        for (let i = 0; i < folders.length; i++) {
-            addSubfolder(folders[i], id)
-        }
-
-        localStorage.setItem('root', folders)
-        
-    }
+    const {root, createFolder} = useFolders()
     
     if (!isOpen) {
         return
@@ -52,7 +26,7 @@ const Modal = ({isOpen, onClose, folders, id}) => {
             </div>
 
             <div>
-                <button onClick={handleCreateFolder}>Create</button>
+                <button onClick={ () => createFolder(folder.id, name, root) }>Create</button>
                 <button onClick={onClose}>Close</button>
             </div>
         </div>
