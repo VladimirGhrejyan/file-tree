@@ -1,36 +1,45 @@
 import React, { useState } from 'react'
 import useFolders from '../../hooks/useFolders.hook'
+import root from '../../utils/getRoot'
 import classes from './Modal.module.css'
 
-const Modal = ({isOpen, onClose, folder}) => {
-    
-    const [name, setName] = useState('')
+const Modal = ({ isOpen, onClose, folder }) => {
+  const [name, setName] = useState('')
 
-    const handleNameChange = (e) => {
-        setName(e.target.value)
-    }
+  const handleNameChange = (e) => {
+    setName(e.target.value)
+  }
 
-    const {root, createFolder} = useFolders()
-    
-    if (!isOpen) {
-        return
-    }
-    
-    return (
-        <div className={classes.modal}>
-            <div>
-                <form>
-                    <label htmlFor='name'>Enter folder name</label>
-                    <input id='name' value={name} onChange={handleNameChange} />
-                </form>
-            </div>
+  const { createFolder } = useFolders()
 
-            <div>
-                <button onClick={ () => createFolder(folder.id, name, root) }>Create</button>
-                <button onClick={onClose}>Close</button>
-            </div>
+  const handleCreateFolder = () => {
+    createFolder(folder.id, name, root)
+    onClose()
+  }
+
+  if (!isOpen) {
+    return
+  }
+
+  return (
+    <div className={classes.modal}>
+      <div className={classes['modal-content']}>
+        <div className={classes['modal-title']}>
+          <h2>Enter folder name</h2>
         </div>
-    )
+        <div className={classes['modal-form']}>
+          <input value={name} onChange={handleNameChange} />
+        </div>
+
+        <div className={classes['modal-actions']}>
+          <button onClick={handleCreateFolder}>
+            Create
+          </button>
+          <button onClick={onClose}>Close</button>
+        </div>
+      </div>
+    </div>
+  )
 }
 
 export default Modal
