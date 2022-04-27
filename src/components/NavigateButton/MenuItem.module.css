@@ -1,0 +1,9 @@
+.menu-item button {
+    width: 100%;
+    cursor: pointer;
+    border: none;
+}
+
+.menu-item button:hover {
+    background-color: aliceblue;
+}
