@@ -1,12 +1,12 @@
 import React from 'react'
-import FoldersList from '../Folders/FoldersList'
+import Folders from '../Folders/Folders'
 import classes from './Main.module.css'
 
 const Main = () => {
   return (
     <div className={classes.container}>
       <div>nav</div>
-      <FoldersList />
+      <Folders />
     </div>
   )
 }
