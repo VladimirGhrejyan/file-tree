@@ -16,6 +16,8 @@ const getRoot = () => {
   return JSON.parse(localStorage.getItem('root'))
 }
 
-const root = getRoot()
+export const setRoot = (root) => {
+  localStorage.setItem('root', JSON.stringify(root))
+}
 
-export default root
+export const root = getRoot()
