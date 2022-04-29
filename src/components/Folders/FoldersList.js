@@ -1,7 +1,7 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import FolderItem from './FolderItem'
-import CreateButton from '../CreateButton/CreateButton'
+import CreateButton from '../Buttons/CreateButton'
 import classes from './FoldersList.module.css'
 
 const FoldersList = () => {

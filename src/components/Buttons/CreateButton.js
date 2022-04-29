@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
-import Modal from '../Modal/Modal'
+import { Button } from 'antd'
+import { FolderAddFilled } from '@ant-design/icons'
+import CreateModal from '../Modal/CreateModal'
 
 const CreateButton = ({ folder }) => {
   const [isOpen, setIsOpen] = useState(false)
@@ -14,10 +16,14 @@ const CreateButton = ({ folder }) => {
 
   return (
     <div>
-      <button onClick={handleOpenModal}>
-        Create new folder
-      </button>
-      <Modal
+      <Button
+        size='large'
+        icon={<FolderAddFilled />}
+        onClick={handleOpenModal}
+      >
+        Create
+      </Button>
+      <CreateModal
         isOpen={isOpen}
         onClose={handleCloseModal}
         folder={folder}

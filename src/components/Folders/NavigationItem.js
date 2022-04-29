@@ -1,5 +1,6 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
+import { Button } from 'antd'
 import useFolders from '../../hooks/useFolders.hook'
 
 const NavigationItem = ({ folder }) => {
@@ -12,9 +13,9 @@ const NavigationItem = ({ folder }) => {
   }
 
   return (
-    <button onClick={handleNavigateToFolder}>
+    <Button type='link' onClick={handleNavigateToFolder}>
       {folder.title}
-    </button>
+    </Button>
   )
 }
 

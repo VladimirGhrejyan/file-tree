@@ -1,8 +1,8 @@
 .container {
   display: grid;
-  grid-template-columns: 60px 1fr;
+  grid-template-columns: 120px 1fr;
 }
 
-.container li {
+.list li {
   display: inline;
 }

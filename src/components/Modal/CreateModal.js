@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { v4 as uuidv4 } from 'uuid'
+import { Modal, Input } from 'antd'
 import useFolders from '../../hooks/useFolders.hook'
 import { root } from '../../utils/root'
-import classes from './Modal.module.css'
 
-const Modal = ({ isOpen, onClose, folder }) => {
+const CreateModal = ({ isOpen, onClose, folder }) => {
   const rootFolder = useSelector(
     (state) => state.folder.rootFolder
   )
@@ -27,7 +27,7 @@ const Modal = ({ isOpen, onClose, folder }) => {
       title: name,
     }
     createFolder(newFolder, root)
-    openFolder(newFolderId, rootFolder)
+    openFolder(folder.id, rootFolder)
     onClose()
   }
 
@@ -36,22 +36,21 @@ const Modal = ({ isOpen, onClose, folder }) => {
   }
 
   return (
-    <div className={classes.modal}>
-      <div className={classes['modal-content']}>
-        <div className={classes['modal-title']}>
-          <h2>Enter folder name</h2>
-        </div>
-        <div className={classes['modal-form']}>
-          <input value={name} onChange={handleNameChange} />
-        </div>
-
-        <div className={classes['modal-actions']}>
-          <button onClick={handleCreateFolder}>Create</button>
-          <button onClick={onClose}>Close</button>
-        </div>
+    <Modal
+      title='Create new folder'
+      visible={isOpen}
+      onOk={handleCreateFolder}
+      onCancel={onClose}
+    >
+      <div>
+        <Input
+          value={name}
+          onChange={handleNameChange}
+          placeholder='...enter folder name'
+        />
       </div>
-    </div>
+    </Modal>
   )
 }
 
-export default Modal
+export default CreateModal

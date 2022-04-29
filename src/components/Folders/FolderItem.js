@@ -1,8 +1,9 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { Button } from 'antd'
+import { FolderFilled } from '@ant-design/icons'
 import { setCurrentFolder } from '../../store/reducers/folderReducer'
 import useFolders from '../../hooks/useFolders.hook'
-// import { root } from '../../utils/root'
 
 const FolderItem = ({ folder }) => {
   const root = useSelector((state) => state.folder.rootFolder)
@@ -15,7 +16,13 @@ const FolderItem = ({ folder }) => {
   }
 
   return (
-    <button onClick={handleOpenFolder}>{folder.title}</button>
+    <Button
+      icon={<FolderFilled />}
+      onClick={handleOpenFolder}
+      size='large'
+    >
+      {folder.title}
+    </Button>
   )
 }
 

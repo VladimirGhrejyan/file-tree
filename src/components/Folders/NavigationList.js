@@ -1,6 +1,7 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import NavigationItem from './NavigationItem'
+import BackButton from '../Buttons/BackButton'
 import classes from './NavigationList.module.css'
 
 const NavigationList = () => {
@@ -10,13 +11,18 @@ const NavigationList = () => {
 
   return (
     <div className={classes.container}>
-      <ul>
-        {folders.map((folder) => (
-          <li key={folder.id}>
-            <NavigationItem folder={folder} />
-          </li>
-        ))}
-      </ul>
+      <div>
+        <BackButton />
+      </div>
+      <div className={classes.list}>
+        <ul>
+          {folders.map((folder) => (
+            <li key={folder.id}>
+              <NavigationItem folder={folder} />
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   )
 }
